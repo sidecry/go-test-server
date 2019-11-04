@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test-server
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: test-server
+    spec:
+      containers:
+      - name: test-server
+        image: grimoh/test-server:1.0.0
+        ports:
+        - containerPort: 80
