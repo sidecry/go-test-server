@@ -4,12 +4,16 @@
 ## Usage
 ### local
 
-```
+```sh
 go run main.go
 ```
 
 ### Docker
-TBD
+
+```sh
+docker build -t test-server .
+docker run -p 8080:8080 test-server
+```
 
 ### Kubernetes
 TBD
