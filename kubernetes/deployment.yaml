@@ -11,6 +11,27 @@ spec:
     spec:
       containers:
       - name: test-server
-        image: grimoh/test-server:1.0.0
+        image: grimoh/test-server:1.0.1
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "100m"
+          requests:
+            memory: "256Mi"
+            cpu: "50m"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            httpHeaders:
+              - name: Host
+                value: KubernetesLivenessProbe
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8080
+            httpHeaders:
+              - name: Host
+                value: KubernetesReadinessProbe
