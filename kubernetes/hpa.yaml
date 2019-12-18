@@ -1,0 +1,17 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: test-server
+  namespace: test-server
+spec:
+  scaleTargetRef: 
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: test-server
+  minReplicas: 3
+  maxReplicas: 6
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 50
