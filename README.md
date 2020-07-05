@@ -5,15 +5,18 @@
 ### local
 
 ```sh
-go run main.go
+$ go run main.go
 ```
 
 ### Docker
 
 ```sh
-docker build -t test-server .
-docker run -p 8080:8080 test-server
+$ docker build -t test-server .
+$ docker run -p 8080:8080 test-server
 ```
 
 ### Kubernetes
-TBD
+
+```sh
+$ kubectl apply -f kubernetes/
+```
