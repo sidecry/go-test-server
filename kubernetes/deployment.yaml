@@ -1,18 +1,28 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: test-server
   namespace: test-server
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: test-server
   template:
     metadata:
       labels:
         app: test-server
     spec:
+      volumes:
+        - name: test-config
+          configMap:
+            name: test-config
+        - name: test-secret
+          secret:
+            secretName: test-secret
       containers:
       - name: test-server
-        image: grimoh/test-server:1.0.1
+        image: grimoh/test-server:latest
         ports:
         - containerPort: 80
         resources:
@@ -36,3 +46,19 @@ spec:
             httpHeaders:
               - name: Host
                 value: KubernetesReadinessProbe
+        env:
+          - name: LOG_LEVEL
+            valueFrom:
+              configMapKeyRef:
+                name: test-config
+                key: log_level
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: test-secret
+                key: user
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: test-secret
+                key: password

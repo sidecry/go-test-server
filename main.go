@@ -10,7 +10,7 @@ import (
 
 const (
 	name    = "test-server"
-	version = "1.0.1"
+	version = "1.0.0"
 	usage   = ""
 	addr    = ":8080"
 )
