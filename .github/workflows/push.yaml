@@ -6,7 +6,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  SHA8: ${{ github.sha:8 }}
 jobs:
   docker:
     name: Build and push Docker image
@@ -14,6 +13,9 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
+    - name: get commit hash
+      uses: pr-mpt/actions-commit-hash@v1
+      id: commit
     - name: Log in to the Container registry
       uses: docker/login-action@v1
       with:
@@ -25,7 +27,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.IMAGE_NAME }}:${{ env.SHA8 }}
+        tags: ${{ env.IMAGE_NAME }}:${{ steps.commit.outputs.short }}
   scan:
     name: Scanning by Trivy vulnerability
     needs: docker
@@ -34,7 +36,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: '${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.SHA8 }}'
+        image-ref: '${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ steps.commit.outputs.short }}'
         format: 'template'
         template: '@/contrib/sarif.tpl'
         output: 'trivy-results.sarif'
