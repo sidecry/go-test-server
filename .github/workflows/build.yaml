@@ -25,8 +25,6 @@ jobs:
         fi
     - name: Build golang
       run: go build -v .
-    - name: Build an image from Dockerfile
-      run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
     - name: Run Trivy vulnerability scanner in repo mode
       uses: aquasecurity/trivy-action@master
       with:
