@@ -11,8 +11,8 @@ $ go run main.go
 ### Docker
 
 ```sh
-$ docker build -t test-server .
-$ docker run -p 8080:8080 test-server
+$ docker build -t go-test-server .
+$ docker run -p 8080:8080 go-test-server
 ```
 
 ### Kubernetes
