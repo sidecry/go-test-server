@@ -33,6 +33,7 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
   scan:
     name: Scanning by Trivy vulnerability
+    needs: docker
     runs-on: ubuntu-latest
     steps:
     - name: Run Trivy vulnerability scanner
