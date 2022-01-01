@@ -18,5 +18,5 @@ $ docker run -p 8080:8080 test-server
 ### Kubernetes
 
 ```sh
-$ kubectl apply -f kubernetes/
+$ kubectl apply -f kubernetes/raw/
 ```
