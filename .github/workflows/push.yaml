@@ -1,4 +1,4 @@
-name: merge
+name: Build and push Docker image and Scanning by Trivy vulnerability
 on:
   push:
     branches:
@@ -7,8 +7,8 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/test-server
 jobs:
-  merge:
-    name: Merge
+  docker:
+    name: Build and push Docker image
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
@@ -31,6 +31,10 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+  scan:
+    name: Scanning by Trivy vulnerability
+    runs-on: ubuntu-latest
+    steps:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
@@ -39,6 +43,6 @@ jobs:
         template: '@/contrib/sarif.tpl'
         output: 'trivy-results.sarif'
     - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
+      uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: 'trivy-results.sarif
