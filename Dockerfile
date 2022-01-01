@@ -1,4 +1,4 @@
-ARG PACKAGE=github.com/grimoh/test-server 
+ARG PACKAGE=github.com/grimoh/go-test-server
 
 # build
 FROM golang:1.13-alpine3.10 as builder
@@ -17,7 +17,7 @@ ENV \
 COPY go.mod go.sum ./
 RUN GO111MODULE=on go mod download
 
-RUN go build -o /opt/test-server
+RUN go build -o /opt/go-test-server
 
 # run
 FROM alpine:3.10 as executor
@@ -30,4 +30,4 @@ COPY --from=builder /go/src /go/src
 ENV \
 	PATH=/opt:$PATH
 
-CMD ["test-server"]
+CMD ["go-test-server"]
