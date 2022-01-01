@@ -5,7 +5,7 @@ on:
       - master
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/test-server
+  IMAGE_NAME: ${{ github.repository }}/go-test-server
 jobs:
   docker:
     name: Build and push Docker image
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@v2
+      uses: aquasecurity/trivy-action@master
       with:
         image-ref: '${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ steps.commit.outputs.short }}'
         format: 'template'
