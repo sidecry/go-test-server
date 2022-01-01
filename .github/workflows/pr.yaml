@@ -1,4 +1,4 @@
-name: Run go build and Scanning by Trivy vulnerability in repo mode
+name: Run go build
 on:
   pull_request:
     branches:
@@ -24,16 +24,3 @@ jobs:
         fi
     - name: Build
       run: go build -v .
-  scan:
-    name: Scanning by Trivy vulnerability in repo mode
-    runs-on: ubuntu-latest
-    steps:
-    - name: Run Trivy vulnerability scanner in repo mode
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'fs'
-        ignore-unfixed: true
-        format: 'template'
-        template: '@/contrib/sarif.tpl'
-        output: 'trivy-results.sarif'
-        severity: 'CRITICAL'
