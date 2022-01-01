@@ -5,8 +5,8 @@ on:
       - master
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.actor }}/${{ github.repository }}
-  SHA8: ${GITHUB_SHA::8}
+  IMAGE_NAME: ${{ github.repository }}
+  SHA8: ${{ github.sha:8 }}
 jobs:
   docker:
     name: Build and push Docker image
@@ -25,7 +25,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.IMAGE_NAME }}:${GITHUB_SHA::8}
+        tags: ${{ env.IMAGE_NAME }}:${{ env.SHA8 }}
   scan:
     name: Scanning by Trivy vulnerability
     needs: docker
@@ -34,7 +34,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: '${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest'
+        image-ref: '${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.SHA8 }}'
         format: 'template'
         template: '@/contrib/sarif.tpl'
         output: 'trivy-results.sarif'
