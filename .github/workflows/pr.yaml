@@ -1,11 +1,11 @@
-name: Run go build
+name: Run go build and Scanning by Trivy vulnerability in IaC mode
 on:
   pull_request:
     branches:
-      - master
+      - main
 jobs:
-  build:
-    name: Build
+  pr:
+    name: Run go build and Scanning by Trivy vulnerability in IaC mode
     runs-on: ubuntu-latest
     steps:
     - name: Set up Go 1.13
@@ -23,3 +23,12 @@ jobs:
         fi
     - name: Build
       run: go build -v .
+    - name: Run Trivy vulnerability scanner in IaC mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'config'
+        hide-progress: false
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        severity: 'CRITICAL,HIGH'

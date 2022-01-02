@@ -2,7 +2,7 @@ name: Build and push Docker image and Scanning by Trivy vulnerability
 on:
   push:
     branches:
-      - master
+      - main
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/go-test-server
