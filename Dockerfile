@@ -30,4 +30,5 @@ COPY --from=builder /go/src /go/src
 ENV \
 	PATH=/opt:$PATH
 
+USER 12345
 CMD ["go-test-server"]
