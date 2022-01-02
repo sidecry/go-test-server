@@ -2,7 +2,7 @@ name: Run go build and Scanning by Trivy vulnerability in IaC mode
 on:
   pull_request:
     branches:
-      - master
+      - main
 jobs:
   build:
     name: Build
