@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/grimoh/test-server/server"
+	"github.com/grimoh/go-test-server/pkg/cmd/server"
 	"github.com/urfave/cli"
 )
 
