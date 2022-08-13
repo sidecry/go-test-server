@@ -22,7 +22,7 @@ spec:
             secretName: test-secret
       containers:
       - name: test-server
-        image: grimoh/test-server:latest
+        image: ghcr.io/grimoh/go-test-server/go-test-server:latest
         ports:
         - containerPort: 80
         resources:

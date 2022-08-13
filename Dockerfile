@@ -28,7 +28,7 @@ COPY --from=builder /etc/ssl/certs /etc/ssl/certs
 COPY --from=builder /go/src /go/src
 
 ENV \
-	PATH=/opt:$PATH
+    PATH=/opt:$PATH
 
 USER 12345
 CMD ["go-test-server"]
