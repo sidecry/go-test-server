@@ -34,5 +34,5 @@ kind load docker-image go-test-server
 
 ```sh
 kubectl apply -f k8s/raw
-kubectl port-forward service/go-test-server 8080:8080 -n test-server
+kubectl port-forward service/test-server 8080:8080 -n test-server
 ```
