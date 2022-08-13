@@ -33,9 +33,14 @@ kubectl cluster-info --context kind-kind
 kind load docker-image go-test-server
 ```
 
+##### Kubernetes Manifest(Raw)
+
 Apply K8s manifest and connect to K8s service.
 
 ```sh
-kubectl apply -f k8s/raw
+kubectl apply -f kubernetes/raw
 kubectl port-forward service/test-server 8080:8080 -n test-server
 ```
+##### Kubernetes Manifest(HelmChart)
+
+##### Kubernetes Manifest(Helmfile)
