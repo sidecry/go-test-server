@@ -24,6 +24,7 @@ Prepare Docker Image.
 ```
 docker build -t go-test-server .
 ```
+
 Create K8s Cluster using [kind](https://github.com/kubernetes-sigs/kind) and load local Docker Image.
 
 ```sh
@@ -31,6 +32,8 @@ kind create cluster
 kubectl cluster-info --context kind-kind
 kind load docker-image go-test-server
 ```
+
+Apply K8s manifest and connect to K8s service.
 
 ```sh
 kubectl apply -f k8s/raw
