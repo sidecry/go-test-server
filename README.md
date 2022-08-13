@@ -6,7 +6,7 @@
 ### local
 
 ```sh
-$ go run main.go
+$ go run cmd/server/main.go
 ```
 
 ### Docker
