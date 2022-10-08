@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package test;
+option go_package = "./";
+
+message Test {
+  string id = 1;
+  string name = 2;
+  int64 created_at = 3;
+  int64 updated_at = 4;
+}
+
+message TestCreateRequest {
+  string name = 1;
+}
+
+message TestCreateResponse {
+  Test test = 1;
+}
+
+service TestService {
+  rpc Test (TestCreateRequest) returns (TestCreateResponse);
+}
