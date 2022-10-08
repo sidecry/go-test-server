@@ -15,13 +15,10 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
     - name: Get dependencies
-      run: |
-        go get -v -t -d ./...
-        if [ -f Gopkg.toml ]; then
-            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-            dep ensure
-        fi
+      working-directory: ./external-server
+      run: go mod download
     - name: Build
+      working-directory: ./external-server
       run: go build -v cmd/server/main.go
     - name: Run Trivy vulnerability scanner in IaC mode
       uses: aquasecurity/trivy-action@master
