@@ -1,7 +1,7 @@
-ARG PACKAGE=github.com/grimoh/go-test-server
+ARG PACKAGE=github.com/grimoh/go-test-server/external-server
 
 # build
-FROM golang:1.17-alpine3.15 as builder
+FROM golang:1.18-alpine3.16 as builder
 
 COPY . /go/src/$PACKAGE
 WORKDIR /go/src/$PACKAGE
@@ -17,7 +17,7 @@ ENV \
 COPY go.mod go.sum ./
 RUN GO111MODULE=on go mod download
 
-RUN go build -o /opt/go-test-server cmd/server/main.go
+RUN go build -o /opt/external-server cmd/server/main.go
 
 # run
 FROM alpine:3.15 as executor
@@ -31,4 +31,4 @@ ENV \
     PATH=/opt:$PATH
 
 USER 12345
-CMD ["go-test-server"]
+CMD ["external-server"]
