@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-server
-  namespace: test-server
+  name: go-test-server
+  namespace: go-test-server
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: test-server
+      app: go-test-server
   template:
     metadata:
       labels:
-        app: test-server
+        app: go-test-server
     spec:
       volumes:
-        - name: test-config
+        - name: go-test-config
           configMap:
-            name: test-config
-        - name: test-secret
+            name: go-test-config
+        - name: go-test-secret
           secret:
-            secretName: test-secret
+            secretName: go-test-secret
       containers:
-      - name: test-server
+      - name: go-test-server
         image: ghcr.io/grimoh/go-test-server/go-test-server:latest
         imagePullPolicy: IfNotPresent
         ports:
@@ -51,15 +51,15 @@ spec:
           - name: LOG_LEVEL
             valueFrom:
               configMapKeyRef:
-                name: test-config
+                name: go-test-config
                 key: log_level
           - name: USERNAME
             valueFrom:
               secretKeyRef:
-                name: test-secret
+                name: go-test-secret
                 key: user
           - name: PASSWORD
             valueFrom:
               secretKeyRef:
-                name: test-secret
+                name: go-test-secret
                 key: password
