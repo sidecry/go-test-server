@@ -4,11 +4,15 @@
 
 ### local
 
+Run go-test-server
+
 ```sh
-go run cmd/server/main.go
+go run app/main.go
 ```
 
 #### Docker
+
+Run go-test-server
 
 ```sh
 docker build -t go-test-server .
