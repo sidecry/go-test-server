@@ -17,7 +17,7 @@ ENV \
 COPY go.mod go.sum ./
 RUN GO111MODULE=on go mod download
 
-RUN go build -o /opt/go-test-server cmd/server/main.go
+RUN go build -o /opt/go-test-server app/main.go
 
 # run
 FROM alpine:3.15 as executor
