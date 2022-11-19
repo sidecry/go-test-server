@@ -14,7 +14,7 @@ type Article struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-type ArticleUseCase interface {
+type ArticleUsecase interface {
 	Fetch(ctx context.Context, cursor string, num int64) ([]Article, string, error)
 	GetById(ctx context.Context, id int64) (Article, error)
 	Update(ctx context.Context, ar *Article) error
