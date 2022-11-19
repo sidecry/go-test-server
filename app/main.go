@@ -7,6 +7,7 @@ import (
 	"net/url"
 	"time"
 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/labstack/echo"
 	"github.com/spf13/viper"
 
@@ -38,7 +39,7 @@ func main() {
 
 	val := url.Values{}
 	val.Add("parseTime", "1")
-	val.Add("loc", "Asia/Japan")
+	val.Add("loc", "Local")
 
 	dsn := fmt.Sprintf("%s?%s", conn, val.Encode())
 
