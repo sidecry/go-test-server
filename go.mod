@@ -53,11 +53,3 @@ require (
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.23.0
 )
-
-replace github.com/grimoh/go-test-server/domain => ./domain/
-
-replace github.com/grimoh/go-test-server/article/repository => ./article/repository
-
-replace github.com/grimoh/go-test-server/article/usecase => ./article/usecase
-
-replace github.com/grimoh/go-test-server/article/repository/mysql => ./article/repository/mysql
