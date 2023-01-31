@@ -27,7 +27,7 @@ jobs:
           type=sha
       id: meta
     - name: Build and push Docker image
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v4
       with:
         working-directory: ./external-server
         context: .
