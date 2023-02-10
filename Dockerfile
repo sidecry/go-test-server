@@ -20,7 +20,7 @@ RUN GO111MODULE=on go mod download
 RUN go build -o /opt/go-test-server app/main.go
 
 # run
-FROM alpine:3.15 as executor
+FROM alpine:3.17 as executor
 
 WORKDIR /opt
 COPY --from=builder /opt /opt
