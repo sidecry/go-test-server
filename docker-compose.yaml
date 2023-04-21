@@ -28,7 +28,7 @@ services:
         condition: service_healthy
 
   mysql:
-    image: mysql:5.7
+    image: mysql:8.0
     platform: linux/x86_64
     container_name: go-test-mysql
     command: mysqld --user=root
