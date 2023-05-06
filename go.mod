@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.9.0
-	github.com/go-sql-driver/mysql v1.7.0
+	github.com/go-sql-driver/mysql v1.7.1
 	golang.org/x/sync v0.1.0
 	google.golang.org/protobuf v1.30.0
 	gopkg.in/go-playground/validator.v9 v9.31.0
